@@ -1,0 +1,75 @@
+﻿@using Siyabonga_Africa.ViewModles
+@{
+    ViewBag.Title = "Users";
+}
+
+<h2>Users</h2>
+
+<table class="table table-condensed table-hover">
+    <thead style="position: sticky;top: 0">
+        <tr bgcolor="#222222" class="auto-style">
+            <th width="33%">User Name</th>
+            <th width="33%">User Passcode</th>
+            <th width="33%">User Type </th>
+            <th width="33%">User Points </th>
+            <th width="33%">User Rewards </th>
+        </tr>
+    </thead>
+    @foreach (var Users in Model.AllUsers)
+    {
+<tr>
+    <td>@Users.Name</td>
+    <td>@Users.Passcode</td>
+    <td>
+        @if (Users.GetType() == typeof(philanthropist))
+        {
+            @:philanthropist
+            
+        }
+        else if (Users.GetType() == typeof(underprivileged))
+        {
+            @:underprivileged
+        }
+        else if(Users.GetType() == typeof(admin))
+        {
+            @:Admin
+        }
+    </td>
+    <td>
+        @if (Users.GetType() == typeof(philanthropist))
+        {
+            philanthropist MYuser = (philanthropist)Users;
+//<span>: @MYuser.DonationPoints</span>
+        }
+        else if (Users.GetType() == typeof(underprivileged))
+        {
+
+            underprivileged MYuser = (underprivileged)Users;
+        //    <span>Number of lives: @MYuser.WorkingScore</span>
+        }
+        else
+        {
+            @:Admin
+        }
+    </td>
+    <td>
+        @if (Users.GetType() == typeof(philanthropist))
+        {
+            
+       //     <span> @Users.ViewRewards();</span>
+        }
+        else if (Users.GetType() == typeof(underprivileged))
+        {
+     
+     //       <span>@Users.ViewRewards();</span>
+        }
+        else
+        {
+            @:Admin
+        }
+    </td>
+
+</tr>
+    }
+    </tbody>
+</table>

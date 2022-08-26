@@ -1,0 +1,48 @@
+﻿@model Siyabonga_Africa.ViewModles.loginVM
+@using Siyabonga_Africa.ViewModles
+@{
+    ViewBag.Title = "LogedIN";
+}
+
+<h2>Hi</h2>
+
+@{bool found = false;}
+@foreach (var Users in Model.AllUsers)
+{
+    if (Users.Passcode == Model.Passcode && Users.Name == Model.Username && Users.GetType() == typeof(admin))
+    {
+        <p> Welcome @Model.Username Your Are AN ADMIN</p>
+        @Html.ActionLink("Admin", "Users", "Home");
+        found = true;
+
+        // check for Philanthropist
+        //Check for UnderPrivalaged
+
+    }
+    else
+
+    if (Users.Name == Model.Username && Users.Passcode == Model.Passcode)
+    {
+        if (Users.GetType() == typeof(philanthropist))
+        {
+            <p> Welcome @Model.Username Your Password is:@Model.Passcode </p>
+            @Html.ActionLink("Donate Now", "Donation", "Home");
+            found = true;
+        }
+        else
+            if (Users.GetType() == typeof(underprivileged))
+        {
+            <p> Welcome @Model.Username Your Password is:@Model.Passcode </p>
+            @Html.ActionLink("Reach out for a helong Hand", "HelpingHand", "Home");
+            found = true;
+        }
+
+    }
+
+
+}
+@*@if (found == false)
+    {
+        <p> Welcome @Model.Username Would you like to Register With This UserName and Password: @Model.Passcode We COuld not fine you on the system</p>
+        @Html.ActionLink("Register", "HelpingHand", "Home");
+    }*@

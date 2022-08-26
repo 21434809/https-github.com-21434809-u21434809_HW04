@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2">
+    <h2>login</h2>
+
+    @using (Html.BeginForm())
+
+    {
+
+        <div class="form-group">
+            <label>UserName</label>
+            <input type="text" name="Username" class="form-control" min="0" value="Rueben" />
+        </div>
+
+        <div class="form-group">
+            <label>4 Diget Pin Code</label>
+            <input type="text" name="Passcode" class="form-control" value="1234" />
+        </div>
+
+        <input type="submit" class="btn btn-primary" /> @*Edited out to avoid error by calling incomplete view*@
+    }
